@@ -44,10 +44,10 @@ function UserActions () {
             <Link to='/dashboard'>Dashboard</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link to='/employees'>Employees</Link>
+            <Link to='/dashboard/employees'>Employees</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link to='/assets'>Assets</Link>
+            <Link to='/dashboard/assets'>Assets</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

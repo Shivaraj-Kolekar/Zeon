@@ -24,7 +24,7 @@ function LandingPage () {
   return (
     <>
       <div
-        className='min-h-screen lg:mx-40 md:mx-10 mx-5 flex justify-center   items-center flex-col
+        className='min-h-screen min-w-screen lg:mx-40 md:mx-10 mx-5 flex justify-center   items-center flex-col
       '
       >
         <Container className=''>
@@ -130,9 +130,9 @@ function LandingPage () {
           </div>
         </Container>
 
-        <div className='w-full mt-16 mb-16'>
+        <div className='min-w-screen mt-16 mb-16'>
           <h2 className='text-4xl mt-4 mb-8 text-center font-semibold '>FAQ</h2>
-          <Accordion type='single' collapsible className='w-full'>
+          <Accordion type='single' collapsible className=''>
             <AccordionItem value='item-1'>
               <AccordionTrigger className='dark:bg-slate-950 bg-slate-100'>
                 What types of assets can this tool manage?

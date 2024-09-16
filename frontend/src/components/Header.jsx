@@ -8,7 +8,7 @@ function Header () {
   const [isLogin, setLogin] = useState(null)
   const user = localStorage.getItem('token')
   return (
-    <header className='md:py-5 p-3 md:px-5 text-xl bg-slate-300 w-screen border-b-slate-500 dark:border-b-slate-700 border dark:bg-slate-900'>
+    <header className='md:py-5 p-3 md:px-8 text-xl bg-slate-300  border-b-slate-500 dark:border-b-slate-700 border dark:bg-slate-900'>
       <nav className='flex justify-between items-center'>
         <div>
           <Link to='/'>
