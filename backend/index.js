@@ -17,7 +17,11 @@ app.use(express.static('public'))
 dotenv.config({ path: '.env' })
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for URL-encoded payloads
-app.use(cors()) // Enable CORS for all origins
+app.use(
+  cors({
+    origin: 'https://zeon-frontend.vercel.app'
+  })
+) // Enable CORS for all origins
 
 app.use(express.json())
 
