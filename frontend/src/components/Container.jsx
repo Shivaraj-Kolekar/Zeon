@@ -3,7 +3,7 @@ import { useSpring, animated } from '@react-spring/web'
 
 export const Container = ({
   children,
-  distance = 100,
+  distance = 50,
   direction = 'vertical',
   reverse = false
 }) => {

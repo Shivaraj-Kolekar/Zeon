@@ -164,7 +164,7 @@ function Dashboard () {
             )}
           </BreadcrumbList>
         </Breadcrumb>
-        <div className='grid grid-cols-4  gap-2 w-full mb-6'>
+        <div className='grid grid-cols-4  gap-2 w-screen mb-6'>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
               <CardTitle>Total Employees </CardTitle>
@@ -278,7 +278,7 @@ function Dashboard () {
                 </CardHeader>{' '}
                 <hr></hr>
                 <CardContent>
-                  <Table className='p-0 '>
+                  <Table className='p-0 text-base'>
                     <TableHeader className=''>
                       <TableRow>
                         <TableHead className='w-[100px]'>Asset ID</TableHead>

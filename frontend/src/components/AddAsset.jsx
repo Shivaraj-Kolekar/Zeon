@@ -28,7 +28,7 @@ function AddAsset () {
     console.log(watch('employeeId', 'name'))
 
     axios
-      .post('http://localhost:4000/addasset', {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/addasset`, {
         assetId: watch('assetId'),
         assetname: watch('assetname'),
         type: watch('type'),

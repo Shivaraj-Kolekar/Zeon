@@ -129,7 +129,7 @@ function Assets () {
           </CardHeader>{' '}
           <hr></hr>
           <CardContent>
-            <Table className='p-0 '>
+            <Table className='p-0  text-base '>
               <TableHeader className=''>
                 <TableRow>
                   <TableHead className='w-[100px]'>Asset ID</TableHead>

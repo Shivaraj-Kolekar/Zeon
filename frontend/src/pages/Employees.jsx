@@ -118,7 +118,7 @@ function Employees () {
       })
   }
   return (
-    <div className='lg:mx-16 my-16 mx-6 min-h-screen min-w-screen flex  flex-col '>
+    <div className='lg:mx-16 my-16 mx-6 min-w-screen min-h-screen min-w-screen flex  flex-col '>
       <Breadcrumb className='mb-8 font-semibold'>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -160,7 +160,7 @@ function Employees () {
           </CardHeader>{' '}
           <hr></hr>
           <CardContent>
-            <Table className='p-0 '>
+            <Table className='p-0  text-base '>
               <TableHeader className=''>
                 <TableRow>
                   <TableHead className='w-[100px]'>Employee ID</TableHead>

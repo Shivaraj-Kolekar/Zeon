@@ -347,6 +347,6 @@ app.use(cookieParser())
 //app.post('/signup', cookieJwtAuth, signupRoute)
 
 //Server port start route
-app.listen(4000, () => {
+app.listen(4001, () => {
   console.log('listening on port 4000')
 })
