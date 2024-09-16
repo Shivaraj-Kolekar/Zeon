@@ -65,7 +65,7 @@ function SignUp () {
       }
     } catch (err) {
       console.error('Error:', err)
-      toast.error(`${isLogin ? 'Logged in' : 'Registered'} successfully!`, {
+      toast.error(`${isLogin ? 'Logged in' : 'Registered'} unsuccesfull!`, {
         style: {
           borderRadius: '10px',
           background: '#333',
