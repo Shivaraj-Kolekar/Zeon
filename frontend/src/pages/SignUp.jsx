@@ -55,7 +55,7 @@ function SignUp () {
         setMessage(`${isLogin ? 'Login' : 'Registration'} successful!`)
       } else {
         setMessage('Authentication failed, please try again.')
-        toast.error(`${isLogin ? 'Logged in' : 'Registered'} successfully!`, {
+        toast.error(`${isLogin ? 'Log in' : 'Registration'} unsucessfull!`, {
           style: {
             borderRadius: '10px',
             background: '#333',
@@ -65,7 +65,7 @@ function SignUp () {
       }
     } catch (err) {
       console.error('Error:', err)
-      toast.error(`${isLogin ? 'Logged in' : 'Registered'} unsuccesfull!`, {
+      toast.error(`${isLogin ? 'Log in' : 'Registration'} unsucessfull!`, {
         style: {
           borderRadius: '10px',
           background: '#333',

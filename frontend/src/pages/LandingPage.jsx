@@ -130,7 +130,7 @@ function LandingPage () {
           </div>
         </Container>
 
-        <div className='min-w-screen mt-16 mb-16'>
+        <div className='w-full mt-16 mb-16'>
           <h2 className='text-4xl mt-4 mb-8 text-center font-semibold '>FAQ</h2>
           <Accordion type='single' collapsible className=''>
             <AccordionItem value='item-1'>
