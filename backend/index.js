@@ -19,9 +19,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for URL-encoded payloads
 app.use(
   cors({
-    origin: '*', // Allow all origins temporarily for testing
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true
+    origin: 'https://zeon-vault.vercel.app'
   })
 ) // Enable CORS for all origins
 app.options('*', cors())
