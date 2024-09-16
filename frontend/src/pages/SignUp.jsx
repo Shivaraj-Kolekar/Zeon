@@ -32,8 +32,8 @@ function SignUp () {
   const handleSubmit = async e => {
     e.preventDefault()
     const url = isLogin
-      ? 'http://localhost:4000/login'
-      : 'http://localhost:4000/register'
+      ? `${import.meta.env.BACKEND_URL}/login`
+      : `${import.meta.env.BACKEND_URL}/register`
 
     try {
       const response = await axios.post(
