@@ -19,10 +19,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for URL-encoded payloads
 app.use(
   cors({
-    origin: 'https://zeon-vault.vercel.app'
+    origin: '*', // Allow all origins temporarily for testing
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
   })
 ) // Enable CORS for all origins
-
+app.options('*', cors())
 app.use(express.json())
 
 //JWT verify token
