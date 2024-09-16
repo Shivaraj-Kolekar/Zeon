@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for URL-encoded payloads
 app.use(
   cors({
-    origin: 'https:/zeon-vault.vercel.app/'
+    origin: 'https://zeon-vault.vercel.app'
   })
 ) // Enable CORS for all origins
 
