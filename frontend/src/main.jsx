@@ -8,7 +8,7 @@ import {
   Route,
   RouterProvider
 } from 'react-router-dom'
-import { Analytics } from '@vercel/analytics/react'
+
 import { ThemeProvider } from './components/ThemeProvider.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import Layout from './Layout.jsx'
@@ -45,7 +45,6 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {' '}
-    <Analytics />
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <RouterProvider router={router} />
     </ThemeProvider>
