@@ -11,7 +11,7 @@ function Header () {
       <nav className='flex justify-between items-center'>
         <div>
           <Link to='/'>
-            <h1>ZEON</h1>
+            <h1 id='logo'>ZEON</h1>
           </Link>
         </div>
         {!user ? (
