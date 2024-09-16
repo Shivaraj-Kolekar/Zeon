@@ -31,7 +31,7 @@ const UpdateAsset = ({ asset, onUpdate }) => {
 
   const handleUpdate = data => {
     axios
-      .put(`http://localhost:4000/asset/${asset.assetId}`, data)
+      .put(`${import.meta.env.VITE_BACKEND_URL}/asset/${asset.assetId}`, data)
       .then(res => {
         toast.success('Asset data updated successfully!')
         onUpdate(res.data)

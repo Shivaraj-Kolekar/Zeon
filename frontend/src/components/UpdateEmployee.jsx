@@ -29,7 +29,10 @@ const UpdateEmployee = ({ emp, onUpdate }) => {
 
   const handleUpdate = data => {
     axios
-      .put(`http://localhost:4000/employee/${emp.employeeId}`, data)
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/employee/${emp.employeeId}`,
+        data
+      )
       .then(res => {
         toast.success('Employee data updated successfully!')
         onUpdate(res.data)

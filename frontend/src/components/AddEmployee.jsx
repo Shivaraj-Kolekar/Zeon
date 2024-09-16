@@ -29,7 +29,7 @@ function AddEmployee () {
     console.log(watch('employeeId', 'name'))
 
     axios
-      .post('http://localhost:4000/addemp', {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/addemp`, {
         employeeId: watch('employeeId'),
         name: watch('name'),
         email: watch('email'),

@@ -39,7 +39,7 @@ function Employees () {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/emp')
+      .get(`${import.meta.env.VITE_BACKEND_URL}/emp`)
       .then(res => {
         console.log('Response data:', res.data)
         setEmps(res.data)
@@ -75,7 +75,7 @@ function Employees () {
   }
   function handleDelete (employeeId) {
     axios
-      .delete(`http://localhost:4000/employee/${employeeId}`)
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/employee/${employeeId}`)
       .then(res => {
         console.log(res)
         setEmps(
@@ -95,7 +95,7 @@ function Employees () {
     console.log(watch('employeeId', 'name'))
 
     axios
-      .put(`http://localhost:4000/employee/${employeeId}`, {
+      .put(`${import.meta.env.VITE_BACKEND_URL}/employee/${employeeId}`, {
         employeeId: watch('employeeId'),
         name: watch('name'),
         email: watch('email'),

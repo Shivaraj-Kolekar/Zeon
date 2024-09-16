@@ -86,7 +86,7 @@ function Dashboard () {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/emp')
+      .get(`${import.meta.env.VITE_BACKEND_URL}/emp`)
       .then(res => {
         console.log('Response data:', res.data)
         setEmps(res.data)
@@ -94,7 +94,7 @@ function Dashboard () {
       .catch(err => console.log('Error fetching tasks:', err))
 
     axios
-      .get('http://localhost:4000/assets')
+      .get(`${import.meta.env.VITE_BACKEND_URL}/assets`)
       .then(res => {
         console.log('Response data:', res.data)
         setAssets(res.data)

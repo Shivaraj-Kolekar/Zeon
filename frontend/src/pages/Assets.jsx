@@ -38,7 +38,7 @@ function Assets () {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/assets')
+      .get(`${import.meta.env.VITE_BACKEND_URL}/assets`)
       .then(res => {
         console.log('Response data:', res.data)
         setAssets(res.data)
@@ -75,7 +75,7 @@ function Assets () {
 
   function handleDelete (assetId) {
     axios
-      .delete(`http://localhost:4000/asset/${assetId}`)
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/asset/${assetId}`)
       .then(res => {
         console.log(res)
         setAssets(assets.filter(asset => asset._id !== assetId))
