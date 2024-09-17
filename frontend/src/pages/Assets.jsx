@@ -32,7 +32,17 @@ import { Edit2, SlashIcon, Trash2 } from 'lucide-react'
 import AddAsset from '@/components/AddAsset'
 import { Button } from '@/components/ui/button'
 import UpdateAsset from '@/components/UpdateAsset'
-
+import { LayoutDashboard } from 'lucide-react'
+import { User2Icon } from 'lucide-react'
+import { ComputerIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 function Assets () {
   const [assets, setAssets] = useState()
 
@@ -87,7 +97,7 @@ function Assets () {
       })
   }
   return (
-    <div>
+    <div className='grid grid-cols-12'>
       <div
         className=' w-[70px]'
         style={{ display: 'flex', height: '100%', minHeight: '400px' }}

@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { PanelLeft, SlashIcon } from 'lucide-react'
 import { ShoppingCart } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Home } from 'lucide-react'
 import { Package2, Package } from 'lucide-react'
 import { Users2 } from 'lucide-react'
@@ -138,78 +138,64 @@ function Dashboard () {
     )
   }
 
-  const location = useLocation()
-  const [darkMode, setDarkMode] = useState(false)
-
-  const toggleDarkMode = () => {
-    setDarkMode(prev => !prev)
-  }
-
   return (
-    <div
-      className={`flex ${
-        darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
-      }`}
-    >
-      <Sidebar
-        className={`transition-colors ${
-          darkMode ? 'bg-gray-800' : 'bg-gray-300'
-        }`}
-        backgroundColor={darkMode ? '#020617' : '#FFFFFF'}
-        width='70px'
+    <div className='grid grid-cols-12'>
+      <div
+        className=' w-[70px]'
+        style={{ display: 'flex', height: '100%', minHeight: '400px' }}
       >
-        <Menu>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link to='/dashboard'>
-                  <MenuItem>
-                    <LayoutDashboard className='w-9 h-9' />
-                  </MenuItem>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Dashboard</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link to='/dashboard/employees'>
-                  <MenuItem>
-                    <User2Icon className='w-8 h-8' />
-                  </MenuItem>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Employees</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link to='/dashboard/assets'>
-                  <MenuItem>
-                    <ComputerIcon className='w-8 h-8' />
-                  </MenuItem>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Assets</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </Menu>
-      </Sidebar>
-      <div className='lg:mx-16 my-16 mx-6 min-h-screen col-span-11 flex flex-col'>
-        <button
-          onClick={toggleDarkMode}
-          className='mb-4 p-2 bg-gray-500 text-white rounded'
+        <Sidebar
+          className='dark:hover:bg-slate-800 bg-slate-300'
+          backgroundColor='#020617'
+          width='70px'
         >
-          Toggle {darkMode ? 'Light' : 'Dark'} Mode
-        </button>
+          <Menu>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard'>
+                    <MenuItem>
+                      <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/employees'>
+                    <MenuItem>
+                      <User2Icon className='w-8 -h-8'></User2Icon>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Employees</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/assets'>
+                    <MenuItem>
+                      <ComputerIcon className='w-8 -h-8' />
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Assets</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </Menu>
+        </Sidebar>
+      </div>
+      <div className='lg:mx-16 my-16 mx-6 min-h-screen  col-span-11  flex  flex-col '>
         <Breadcrumb className='mb-8 font-semibold'>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -224,48 +210,52 @@ function Dashboard () {
             <BreadcrumbSeparator>
               <SlashIcon />
             </BreadcrumbSeparator>
-            {location.pathname.includes('/dashboard/employees') && (
+            {location.pathname.includes('/dashboard/employees') ? (
               <BreadcrumbItem>
                 <BreadcrumbLink href='/dashboard/employees'>
                   Employees
                 </BreadcrumbLink>
               </BreadcrumbItem>
+            ) : (
+              ''
             )}
-            {location.pathname.includes('/dashboard/assets') && (
+            {location.pathname.includes('/dashboard/assets') ? (
               <BreadcrumbItem>
                 <BreadcrumbLink href='/dashboard/assets'>Assets</BreadcrumbLink>
               </BreadcrumbItem>
+            ) : (
+              ''
             )}
           </BreadcrumbList>
         </Breadcrumb>
-        <div className='grid grid-cols-4 gap-2 mb-6'>
+        <div className='grid grid-cols-4  gap-2  mb-6'>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
-              <CardTitle>Total Employees</CardTitle>
-              <UserIcon className='w-6 h-6' />
+              <CardTitle>Total Employees </CardTitle>
+              <UserIcon className='w-6 h-6'></UserIcon>
             </CardHeader>
             <CardContent>
-              <CardTitle className='text-2xl'>{emps.length}</CardTitle>
+              <CardTitle className='text-2xl '>{emps.length}</CardTitle>
             </CardContent>
           </Card>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
-              <CardTitle>Total Assets</CardTitle>
-              <ComputerDesktopIcon className='w-6 h-6' />
+              <CardTitle>Total Assets </CardTitle>
+              <ComputerDesktopIcon className='w-6 h-6'></ComputerDesktopIcon>
             </CardHeader>
             <CardContent>
-              <CardTitle className='text-2xl'>
+              <CardTitle className='text-2xl '>
                 {assets ? assets.length : 0}
               </CardTitle>
             </CardContent>
           </Card>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
-              <CardTitle>Total Software Assets</CardTitle>
-              <CommandLineIcon className='w-6 h-6' />
+              <CardTitle>Total Software Assets </CardTitle>
+              <CommandLineIcon className='w-6 h-6'></CommandLineIcon>
             </CardHeader>
             <CardContent>
-              <CardTitle className='text-2xl'>
+              <CardTitle className='text-2xl '>
                 {
                   assets.filter(
                     asset =>
@@ -278,11 +268,11 @@ function Dashboard () {
           </Card>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
-              <CardTitle>Total Hardware Assets</CardTitle>
-              <CpuChipIcon className='w-6 h-6' />
+              <CardTitle>Total Hardware Assets </CardTitle>
+              <CpuChipIcon className='w-6 h-6'></CpuChipIcon>
             </CardHeader>
             <CardContent>
-              <CardTitle className='text-2xl'>
+              <CardTitle className='text-2xl '>
                 {
                   assets.filter(
                     asset =>
@@ -294,23 +284,28 @@ function Dashboard () {
             </CardContent>
           </Card>
         </div>
-        <div>
-          <Tabs defaultValue='Employees'>
-            <TabsList className='grid grid-cols-2'>
-              <TabsTrigger value='Employees'>Employees</TabsTrigger>
-              <TabsTrigger value='assets'>Assets</TabsTrigger>
+        <div className=' '>
+          <Tabs defaultValue='Employees' className=''>
+            <TabsList className=' grid  grid-cols-2'>
+              <TabsTrigger className='' value='Employees'>
+                Employees
+              </TabsTrigger>
+              <TabsTrigger className='' value='assets'>
+                Assets
+              </TabsTrigger>
             </TabsList>
             <TabsContent value='Employees'>
-              <Card>
+              <Card className='  '>
+                {' '}
                 <CardHeader className='flex justify-between flex-row items-center'>
                   <CardTitle className='text-xl'>
                     Employees Data Table
                   </CardTitle>
-                </CardHeader>
-                <hr />
+                </CardHeader>{' '}
+                <hr></hr>
                 <CardContent>
                   <Table className='p-0 text-base'>
-                    <TableHeader>
+                    <TableHeader className=''>
                       <TableRow>
                         <TableHead className='w-[100px]'>Employee ID</TableHead>
                         <TableHead>Name</TableHead>
@@ -340,14 +335,15 @@ function Dashboard () {
               </Card>
             </TabsContent>
             <TabsContent value='assets'>
-              <Card>
+              <Card className=' col-span-2'>
+                {' '}
                 <CardHeader>
                   <CardTitle className='text-xl'>Assets Data Table</CardTitle>
-                </CardHeader>
-                <hr />
+                </CardHeader>{' '}
+                <hr></hr>
                 <CardContent>
                   <Table className='p-0 text-base'>
-                    <TableHeader>
+                    <TableHeader className=''>
                       <TableRow>
                         <TableHead className='w-[100px]'>Asset ID</TableHead>
                         <TableHead>Asset Name</TableHead>
