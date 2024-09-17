@@ -141,10 +141,14 @@ function Dashboard () {
   return (
     <div className='grid grid-cols-12'>
       <div
-        className=' '
+        className=' w-[70px]'
         style={{ display: 'flex', height: '100%', minHeight: '400px' }}
       >
-        <Sidebar backgroundColor='#020617' width='70px'>
+        <Sidebar
+          className='dark:hover:bg-slate-800 bg-slate-300'
+          backgroundColor='#020617'
+          width='70px'
+        >
           <Menu>
             <TooltipProvider>
               <Tooltip>

@@ -29,11 +29,17 @@ import {
   TableRow,
   TableFooter
 } from '@/components/ui/table'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 import { SlashIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import DeleteEmployee from '@/components/DeleteEmployee'
 import UpdateEmployee from '@/components/UpdateEmployee'
-
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 function Employees () {
   const [emps, setEmps] = useState()
 
@@ -120,10 +126,14 @@ function Employees () {
   return (
     <div className='grid grid-cols-12'>
       <div
-        className=' '
+        className=' w-[70px]'
         style={{ display: 'flex', height: '100%', minHeight: '400px' }}
       >
-        <Sidebar backgroundColor='#020617' width='70px'>
+        <Sidebar
+          className='dark:hover:bg-slate-800 bg-slate-300'
+          backgroundColor='#020617'
+          width='70px'
+        >
           <Menu>
             <TooltipProvider>
               <Tooltip>
