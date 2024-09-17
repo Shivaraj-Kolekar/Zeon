@@ -29,6 +29,7 @@ import {
   TableRow,
   TableFooter
 } from '@/components/ui/table'
+import { Link } from 'react-router-dom'
 import {
   Tooltip,
   TooltipContent,
@@ -124,7 +125,7 @@ function Employees () {
       })
   }
   return (
-    <div className='grid grid-cols-12'>
+    <div className=''>
       <div
         className=' w-[70px]'
         style={{ display: 'flex', height: '100%', minHeight: '400px' }}
@@ -139,7 +140,16 @@ function Employees () {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to='/dashboard'>
-                    <MenuItem>
+                    <MenuItem
+                      rootStyles={{
+                        ['.' + menuClasses.button]: {
+                          backgroundColor: '#020617',
+                          '&:hover': {
+                            backgroundColor: '1e293b'
+                          }
+                        }
+                      }}
+                    >
                       <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
                     </MenuItem>
                   </Link>
@@ -153,7 +163,16 @@ function Employees () {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to='/dashboard/employees'>
-                    <MenuItem>
+                    <MenuItem
+                      rootStyles={{
+                        ['.' + menuClasses.button]: {
+                          backgroundColor: '#020617',
+                          '&:hover': {
+                            backgroundColor: '1e293b'
+                          }
+                        }
+                      }}
+                    >
                       <User2Icon className='w-8 -h-8'></User2Icon>
                     </MenuItem>
                   </Link>
@@ -167,7 +186,16 @@ function Employees () {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to='/dashboard/assets'>
-                    <MenuItem>
+                    <MenuItem
+                      rootStyles={{
+                        ['.' + menuClasses.button]: {
+                          backgroundColor: '#020617',
+                          '&:hover': {
+                            backgroundColor: '1e293b'
+                          }
+                        }
+                      }}
+                    >
                       <ComputerIcon className='w-8 -h-8' />
                     </MenuItem>
                   </Link>
