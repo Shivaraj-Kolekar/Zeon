@@ -317,6 +317,39 @@ function Dashboard () {
             </TabsContent>
           </Tabs>
         </div>
+        <div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Assets Sumary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className='flex flex-row justify-between'>
+                <p>Active/Operational Assets: </p>
+                <p>
+                  {assets.filer(asset => {
+                    asset.status === 'Operatinal' || asset.status === 'Active'
+                  })}
+                </p>
+              </div>
+              <div className='flex flex-row justify-between'>
+                <p>Maintenance Required Assets:</p>
+                <p>
+                  {assets.filer(asset => {
+                    asset.status === 'Maintenance Required'
+                  })}
+                </p>
+              </div>
+              <div className='flex flex-row justify-between'>
+                <p>Expiring Soon Assets:</p>
+                <p>
+                  {assets.filer(asset => {
+                    asset.status === 'Expiring Soon '
+                  })}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )
