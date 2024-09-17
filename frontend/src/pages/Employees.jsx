@@ -118,100 +118,155 @@ function Employees () {
       })
   }
   return (
-    <div className='lg:mx-16 my-16 mx-6  min-h-screen min-w-screen flex  flex-col '>
-      <Breadcrumb className='mb-8 font-semibold'>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <SlashIcon />
-          </BreadcrumbSeparator>
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/dashboard'>Dashboard</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <SlashIcon />
-          </BreadcrumbSeparator>
-          {location.pathname.includes('/dashboard/employees') ? (
+    <div className='grid grid-cols-12'>
+      <div
+        className=' '
+        style={{ display: 'flex', height: '100%', minHeight: '400px' }}
+      >
+        <Sidebar backgroundColor='#020617' width='70px'>
+          <Menu>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard'>
+                    <MenuItem>
+                      <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/employees'>
+                    <MenuItem>
+                      <User2Icon className='w-8 -h-8'></User2Icon>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Employees</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/assets'>
+                    <MenuItem>
+                      <ComputerIcon className='w-8 -h-8' />
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Assets</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </Menu>
+        </Sidebar>
+      </div>
+      <div className='lg:mx-16 my-16 mx-6  min-h-screen min-w-screen flex  flex-col '>
+        <Breadcrumb className='mb-8 font-semibold'>
+          <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href='/dashboard/employees'>
-                Employees
-              </BreadcrumbLink>
+              <BreadcrumbLink href='/'>Home</BreadcrumbLink>
             </BreadcrumbItem>
-          ) : (
-            ''
-          )}
-          {location.pathname.includes('/dashboard/assets') ? (
+            <BreadcrumbSeparator>
+              <SlashIcon />
+            </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink href='/dashboard/assets'>Assets</BreadcrumbLink>
+              <BreadcrumbLink href='/dashboard'>Dashboard</BreadcrumbLink>
             </BreadcrumbItem>
-          ) : (
-            ''
-          )}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <div className=' '>
-        <Card className='  '>
-          {' '}
-          <CardHeader className='flex justify-between flex-row items-center'>
-            <CardTitle className='text-xl'>Employees Data Table</CardTitle>
-            <AddEmployee></AddEmployee>
-          </CardHeader>{' '}
-          <hr></hr>
-          <CardContent>
-            <Table className='p-0  text-base '>
-              <TableHeader className=''>
-                <TableRow>
-                  <TableHead className='w-[100px]'>Employee ID</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Department</TableHead>
-                  <TableHead>Join Date</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {emps.map(emp => (
-                  <TableRow key={emp.employeeId}>
-                    <TableCell>{emp.employeeId}</TableCell>
-                    <TableCell>{emp.name}</TableCell>
-                    <TableCell>{emp.email}</TableCell>
-                    <TableCell>{emp.role}</TableCell>
-                    <TableCell>{emp.department}</TableCell>
-                    <TableCell>
-                      {new Date(emp.joindate).toLocaleDateString()}
-                    </TableCell>
-                    <TableCell>
-                      <span className='flex gap-2'>
-                        <UpdateEmployee
-                          emp={emp}
-                          onUpdate={updatedEmp => {
-                            // Update your state here
-                            setEmps(
-                              emps.map(e =>
-                                e.employeeId === updatedEmp.employeeId
-                                  ? updatedEmp
-                                  : e
-                              )
-                            )
-                          }}
-                        />
-                        <div>
-                          <Button onClick={() => handleDelete(emp.employeeId)}>
-                            <Trash2 className=' h-4 w-4'></Trash2>
-                          </Button>
-                        </div>
-                      </span>
-                    </TableCell>
+            <BreadcrumbSeparator>
+              <SlashIcon />
+            </BreadcrumbSeparator>
+            {location.pathname.includes('/dashboard/employees') ? (
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/dashboard/employees'>
+                  Employees
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            ) : (
+              ''
+            )}
+            {location.pathname.includes('/dashboard/assets') ? (
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/dashboard/assets'>Assets</BreadcrumbLink>
+              </BreadcrumbItem>
+            ) : (
+              ''
+            )}
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div className=' '>
+          <Card className='  '>
+            {' '}
+            <CardHeader className='flex justify-between flex-row items-center'>
+              <CardTitle className='text-xl'>Employees Data Table</CardTitle>
+              <AddEmployee></AddEmployee>
+            </CardHeader>{' '}
+            <hr></hr>
+            <CardContent>
+              <Table className='p-0  text-base '>
+                <TableHeader className=''>
+                  <TableRow>
+                    <TableHead className='w-[100px]'>Employee ID</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Department</TableHead>
+                    <TableHead>Join Date</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-              <TableFooter></TableFooter>
-            </Table>
-          </CardContent>
-        </Card>
+                </TableHeader>
+                <TableBody>
+                  {emps.map(emp => (
+                    <TableRow key={emp.employeeId}>
+                      <TableCell>{emp.employeeId}</TableCell>
+                      <TableCell>{emp.name}</TableCell>
+                      <TableCell>{emp.email}</TableCell>
+                      <TableCell>{emp.role}</TableCell>
+                      <TableCell>{emp.department}</TableCell>
+                      <TableCell>
+                        {new Date(emp.joindate).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell>
+                        <span className='flex gap-2'>
+                          <UpdateEmployee
+                            emp={emp}
+                            onUpdate={updatedEmp => {
+                              // Update your state here
+                              setEmps(
+                                emps.map(e =>
+                                  e.employeeId === updatedEmp.employeeId
+                                    ? updatedEmp
+                                    : e
+                                )
+                              )
+                            }}
+                          />
+                          <div>
+                            <Button
+                              onClick={() => handleDelete(emp.employeeId)}
+                            >
+                              <Trash2 className=' h-4 w-4'></Trash2>
+                            </Button>
+                          </div>
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+                <TableFooter></TableFooter>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )

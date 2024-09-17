@@ -78,6 +78,12 @@ import {
   CardTitle,
   CardFooter
 } from '@/components/ui/card'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 import { LayoutDashboard } from 'lucide-react'
 import { User2Icon } from 'lucide-react'
 import { ComputerIcon } from 'lucide-react'
@@ -135,20 +141,53 @@ function Dashboard () {
   return (
     <div className='grid grid-cols-12'>
       <div
-        className='grid col-span-1  '
+        className=' '
         style={{ display: 'flex', height: '100%', minHeight: '400px' }}
       >
-        <Sidebar backgroundColor='black' width='70px'>
+        <Sidebar backgroundColor='#020617' width='70px'>
           <Menu>
-            <MenuItem>
-              <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
-            </MenuItem>
-            <MenuItem>
-              <User2Icon className='w-8 -h-8'></User2Icon>
-            </MenuItem>
-            <MenuItem>
-              <ComputerIcon className='w-8 -h-8' />
-            </MenuItem>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard'>
+                    <MenuItem>
+                      <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/employees'>
+                    <MenuItem>
+                      <User2Icon className='w-8 -h-8'></User2Icon>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Employees</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/assets'>
+                    <MenuItem>
+                      <ComputerIcon className='w-8 -h-8' />
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Assets</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Menu>
         </Sidebar>
       </div>
