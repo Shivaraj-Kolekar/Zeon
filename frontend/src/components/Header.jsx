@@ -28,13 +28,13 @@ function Header () {
           </ul>
         ) : (
           <ul className='flex flex-row gap-2 items-center md:gap-5'>
-            <li>
+            <li className='md:block hidden'>
               <Link to='/dashboard'>Dashboard</Link>
             </li>
-            <li>
+            <li className='md:block hidden'>
               <Link to='/dashboard/employees'>Employees</Link>
             </li>
-            <li>
+            <li className='md:block hidden'>
               <Link to='/dashboard/assets'>Assets</Link>
             </li>
             <li>

@@ -31,7 +31,7 @@ function LandingPage () {
           <div className='flex items-center  mt-20 flex-col'>
             <div
               className={cn(
-                'group rounded-full border border-black/5 bg-neutral-100 my-4 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800'
+                'group rounded-full border   my-4 text-base text-white transition-all ease-in hover:cursor-pointer '
               )}
             >
               <AnimatedShinyText className='inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400'>
@@ -39,10 +39,10 @@ function LandingPage () {
                 <ArrowRightIcon className='ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5' />
               </AnimatedShinyText>
             </div>
-            <h1 className='text-6xl my-4 self-center text-center items-center font-semibold dark:text-white text-black'>
+            <h1 className='lg:text-6xl  text-4xl my-4 self-center text-center items-center font-semibold dark:text-white text-black'>
               Transform Chaos into Control
             </h1>
-            <p className='text-2xl font-semibold items-center text-center mb-4 dark:text-gray-300 text-gray-600'>
+            <p className='lg:text-2xl text-xl font-semibold items-center text-center mb-4 dark:text-gray-300 text-gray-600'>
               Your all-in-one solution for seamless asset management. Maximize
               efficiency, minimize costs, and regain peace of mind with our
               intelligent platform designed for modern businesses.
@@ -83,16 +83,18 @@ function LandingPage () {
           </div>
         </Container>*/}
         <Container>
-          <h2 className='text-4xl mt-16 text-center mb-8 font-semibold'>
+          <h2 className='lg:text-4xl text-3xl mt-16 text-center mb-8 font-semibold'>
             Why Choose us
           </h2>
-          <div className='grid grid-cols-3 mb-12 gap-5'>
+          <div className='grid grid-cols-3 mb-16 gap-5'>
             <FeatureCard
               className='custom-spotlight-card col-span-3 lg:col-span-1  '
               spotlightColor='rgba(0, 229, 255, 0.2)'
             >
               <ComputerDesktopIcon className='w-10 h-10' />
-              <h2 className='text-2xl font-semibold'>Asset Tracking</h2>
+              <h2 className='lg:text-2xl text-xl font-semibold'>
+                Asset Tracking
+              </h2>
               <p className='dark:text-gray-300 text-gray-800'>
                 Easily add, update, and track all your organization's assets in
                 one place.
@@ -106,7 +108,9 @@ function LandingPage () {
               spotlightColor='rgba(0, 229, 255, 0.2)'
             >
               <UserIcon className='w-10 h-10'></UserIcon>
-              <h2 className='text-2xl font-semibold'>Employee Management</h2>
+              <h2 className='lg:text-2xl text-xl font-semibold'>
+                Employee Management
+              </h2>
               <p className='dark:text-gray-300 text-gray-800'>
                 Manage employee profiles and asset assignments efficiently.
               </p>
@@ -119,7 +123,9 @@ function LandingPage () {
               spotlightColor='rgba(0, 229, 255, 0.2)'
             >
               <ChartBarIcon className='w-10 h-10' />
-              <h2 className='text-2xl font-semibold'>Analytics Dashboard</h2>
+              <h2 className='lg:text-2xl text-xl font-semibold'>
+                Analytics Dashboard
+              </h2>
               <p className='dark:text-gray-300 text-gray-800'>
                 Get insights on asset utilization, management and performance.
               </p>
@@ -130,8 +136,10 @@ function LandingPage () {
           </div>
         </Container>
 
-        <div className='w-full mt-16 mb-16'>
-          <h2 className='text-4xl mt-4 mb-8 text-center font-semibold '>FAQ</h2>
+        <div className='w-full mb-16'>
+          <h2 className='lg:text-4xl text-3xl mt-4 mb-8 text-center font-semibold '>
+            FAQ
+          </h2>
           <Accordion type='single' collapsible className=''>
             <AccordionItem value='item-1'>
               <AccordionTrigger className='dark:bg-slate-950 bg-slate-100'>
