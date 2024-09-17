@@ -18,6 +18,9 @@ import {
   CardTitle,
   CardFooter
 } from '@/components/ui/card'
+import { LayoutDashboard } from 'lucide-react'
+import { User2Icon } from 'lucide-react'
+import { ComputerIcon } from 'lucide-react'
 import AddEmployee from '@/components/AddEmployee'
 import axios from 'axios'
 import {
