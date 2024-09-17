@@ -87,98 +87,155 @@ function Assets () {
       })
   }
   return (
-    <div className='lg:mx-16 my-16 mx-6 min-h-screen  flex  flex-col '>
-      <Breadcrumb className='mb-8 font-semibold'>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <SlashIcon />
-          </BreadcrumbSeparator>
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/dashboard'>Dashboard</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <SlashIcon />
-          </BreadcrumbSeparator>
-          {location.pathname.includes('/dashboard/employees') ? (
+    <div>
+      <div
+        className=' w-[70px]'
+        style={{ display: 'flex', height: '100%', minHeight: '400px' }}
+      >
+        <Sidebar
+          className='dark:hover:bg-slate-800 bg-slate-300'
+          backgroundColor='#020617'
+          width='70px'
+        >
+          <Menu>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard'>
+                    <MenuItem>
+                      <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/employees'>
+                    <MenuItem>
+                      <User2Icon className='w-8 -h-8'></User2Icon>
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Employees</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to='/dashboard/assets'>
+                    <MenuItem>
+                      <ComputerIcon className='w-8 -h-8' />
+                    </MenuItem>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Assets</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </Menu>
+        </Sidebar>
+      </div>
+      <div className='lg:mx-16 my-16 mx-6 min-h-screen  flex  flex-col '>
+        <Breadcrumb className='mb-8 font-semibold'>
+          <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href='/dashboard/employees'>
-                Employees
-              </BreadcrumbLink>
+              <BreadcrumbLink href='/'>Home</BreadcrumbLink>
             </BreadcrumbItem>
-          ) : (
-            ''
-          )}
-          {location.pathname.includes('/dashboard/assets') ? (
+            <BreadcrumbSeparator>
+              <SlashIcon />
+            </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink href='/dashboard/assets'>Assets</BreadcrumbLink>
+              <BreadcrumbLink href='/dashboard'>Dashboard</BreadcrumbLink>
             </BreadcrumbItem>
-          ) : (
-            ''
-          )}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <div className=' '>
-        <Card className=' col-span-2'>
-          {' '}
-          <CardHeader className='flex justify-between flex-row items-center'>
-            <CardTitle className='text-xl'>Assets Data Table</CardTitle>
-            <AddAsset></AddAsset>
-          </CardHeader>{' '}
-          <hr></hr>
-          <CardContent>
-            <Table className='p-0  text-base '>
-              <TableHeader className=''>
-                <TableRow>
-                  <TableHead className='w-[100px]'>Asset ID</TableHead>
-                  <TableHead>Asset Name</TableHead>
-                  <TableHead>Asset Type</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Assigned To Employee</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {assets.map(asset => (
-                  <TableRow key={asset.assetId}>
-                    <TableCell>{asset.assetId}</TableCell>
-                    <TableCell>{asset.assetname}</TableCell>
-                    <TableCell>{asset.type}</TableCell>
-                    <TableCell>{asset.status}</TableCell>
-                    <TableCell>{asset.category}</TableCell>
-                    <TableCell>{asset.assignedTo}</TableCell>
-                    <TableCell>
-                      <span className='flex gap-2'>
-                        <UpdateAsset
-                          asset={asset}
-                          onUpdate={UpdateAsset => {
-                            // Update your state here
-                            setAssets(
-                              assets.map(e =>
-                                e.assetId === UpdateAsset.assetId
-                                  ? UpdateAsset
-                                  : e
-                              )
-                            )
-                          }}
-                        />
-                        <div>
-                          <Button onClick={() => handleDelete(asset.assetId)}>
-                            <Trash2 className=' h-4 w-4'></Trash2>
-                          </Button>
-                        </div>
-                      </span>
-                    </TableCell>
+            <BreadcrumbSeparator>
+              <SlashIcon />
+            </BreadcrumbSeparator>
+            {location.pathname.includes('/dashboard/employees') ? (
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/dashboard/employees'>
+                  Employees
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            ) : (
+              ''
+            )}
+            {location.pathname.includes('/dashboard/assets') ? (
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/dashboard/assets'>Assets</BreadcrumbLink>
+              </BreadcrumbItem>
+            ) : (
+              ''
+            )}
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div className=' '>
+          <Card className=' col-span-2'>
+            {' '}
+            <CardHeader className='flex justify-between flex-row items-center'>
+              <CardTitle className='text-xl'>Assets Data Table</CardTitle>
+              <AddAsset></AddAsset>
+            </CardHeader>{' '}
+            <hr></hr>
+            <CardContent>
+              <Table className='p-0  text-base '>
+                <TableHeader className=''>
+                  <TableRow>
+                    <TableHead className='w-[100px]'>Asset ID</TableHead>
+                    <TableHead>Asset Name</TableHead>
+                    <TableHead>Asset Type</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Assigned To Employee</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-              <TableFooter></TableFooter>
-            </Table>
-          </CardContent>
-        </Card>
+                </TableHeader>
+                <TableBody>
+                  {assets.map(asset => (
+                    <TableRow key={asset.assetId}>
+                      <TableCell>{asset.assetId}</TableCell>
+                      <TableCell>{asset.assetname}</TableCell>
+                      <TableCell>{asset.type}</TableCell>
+                      <TableCell>{asset.status}</TableCell>
+                      <TableCell>{asset.category}</TableCell>
+                      <TableCell>{asset.assignedTo}</TableCell>
+                      <TableCell>
+                        <span className='flex gap-2'>
+                          <UpdateAsset
+                            asset={asset}
+                            onUpdate={UpdateAsset => {
+                              // Update your state here
+                              setAssets(
+                                assets.map(e =>
+                                  e.assetId === UpdateAsset.assetId
+                                    ? UpdateAsset
+                                    : e
+                                )
+                              )
+                            }}
+                          />
+                          <div>
+                            <Button onClick={() => handleDelete(asset.assetId)}>
+                              <Trash2 className=' h-4 w-4'></Trash2>
+                            </Button>
+                          </div>
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+                <TableFooter></TableFooter>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )

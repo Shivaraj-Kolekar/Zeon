@@ -154,16 +154,7 @@ function Dashboard () {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to='/dashboard'>
-                    <MenuItem
-                      rootStyles={{
-                        ['.' + menuClasses.button]: {
-                          backgroundColor: '#020617',
-                          '&:hover': {
-                            backgroundColor: '1e293b'
-                          }
-                        }
-                      }}
-                    >
+                    <MenuItem>
                       <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
                     </MenuItem>
                   </Link>
@@ -177,16 +168,7 @@ function Dashboard () {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to='/dashboard/employees'>
-                    <MenuItem
-                      rootStyles={{
-                        ['.' + menuClasses.button]: {
-                          backgroundColor: '#020617',
-                          '&:hover': {
-                            backgroundColor: '1e293b'
-                          }
-                        }
-                      }}
-                    >
+                    <MenuItem>
                       <User2Icon className='w-8 -h-8'></User2Icon>
                     </MenuItem>
                   </Link>
@@ -200,16 +182,7 @@ function Dashboard () {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to='/dashboard/assets'>
-                    <MenuItem
-                      rootStyles={{
-                        ['.' + menuClasses.button]: {
-                          backgroundColor: '#020617',
-                          '&:hover': {
-                            backgroundColor: '1e293b'
-                          }
-                        }
-                      }}
-                    >
+                    <MenuItem>
                       <ComputerIcon className='w-8 -h-8' />
                     </MenuItem>
                   </Link>
