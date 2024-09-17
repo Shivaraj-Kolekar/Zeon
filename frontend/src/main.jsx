@@ -31,7 +31,6 @@ const router = createBrowserRouter(
             path='/dashboard/employees'
             element={<Employees></Employees>}
           />
-          <Route path='/dashboard/profile' element={<Profile></Profile>} />
           <Route path='/dashboard/assets' element={<Assets></Assets>} />
           <Route index element={<Dashboard></Dashboard>} />
         </Route>

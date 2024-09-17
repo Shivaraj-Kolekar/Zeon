@@ -1,4 +1,3 @@
-import { DataTable } from '@/components/DataTable'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import {
@@ -10,15 +9,7 @@ import {
   TableRow,
   TableFooter
 } from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
-import { PanelLeft, SlashIcon } from 'lucide-react'
-import { ShoppingCart } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { Home } from 'lucide-react'
-import { Package2, Package } from 'lucide-react'
-import { Users2 } from 'lucide-react'
-import { LineChart } from 'lucide-react'
-import { Image } from 'lucide-react'
+
 import {
   Breadcrumb,
   BreadcrumbLink,
@@ -27,48 +18,14 @@ import {
   BreadcrumbSeparator,
   BreadcrumbItem
 } from '@/components/ui/breadcrumb'
-import { Search } from 'lucide-react'
-import ChartCard from '@/components/ChartCard'
-import { Input } from '@/components/ui/input'
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuLabel,
-  DropdownMenuContent
-} from '@/components/ui/dropdown-menu'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger
-} from '@/components/ui/sheet'
-import { Label } from '@/components/ui/label'
+
 import {
   UserIcon,
   ComputerDesktopIcon,
   CommandLineIcon,
   CpuChipIcon
 } from '@heroicons/react/24/outline'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent
-} from '@/components/ui/chart'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Card,
@@ -78,20 +35,26 @@ import {
   CardTitle,
   CardFooter
 } from '@/components/ui/card'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from '@/components/ui/tooltip'
-import { LayoutDashboard } from 'lucide-react'
-import { User2Icon } from 'lucide-react'
-import { ComputerIcon } from 'lucide-react'
-import AddEmployee from '@/components/AddEmployee'
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+import { SlashIcon } from 'lucide-react'
 function Dashboard () {
   const [emps, setEmps] = useState()
   const [assets, setAssets] = useState()
+
+  const assetStatuses = [
+    {
+      name: 'Active/Operational Assets',
+      filter: asset =>
+        asset.status === 'Operational' || asset.status === 'Active'
+    },
+    {
+      name: 'Maintenance Required Assets',
+      filter: asset => asset.status === 'Maintenance required'
+    },
+    {
+      name: 'Expiring Soon Assets',
+      filter: asset => asset.status === 'Expiring Soon'
+    }
+  ]
 
   useEffect(() => {
     axios
@@ -140,8 +103,8 @@ function Dashboard () {
 
   return (
     <div className=''>
-      <div className='lg:mx-16 my-16 mx-6 min-h-screen  col-span-11  flex  flex-col '>
-        <Breadcrumb className='mb-8 font-semibold'>
+      <div className='lg:mx-16 my-8 mx-6 min-h-screen  col-span-11  flex  flex-col '>
+        <Breadcrumb className='mb-5 font-semibold'>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -173,6 +136,14 @@ function Dashboard () {
             )}
           </BreadcrumbList>
         </Breadcrumb>
+        <div className='text-start self-start mb-5'>
+          <h2 className=' text-2xl md:text-3xl font-bold  '>
+            Hi, Welocme Back
+          </h2>
+          <p className='text-gray-400 text-lg md:text-xl '>
+            Monitor your team and resources with ease.
+          </p>
+        </div>
         <div className='grid grid-cols-4  gap-2  mb-6'>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
@@ -317,42 +288,82 @@ function Dashboard () {
             </TabsContent>
           </Tabs>
         </div>
-        <div>
-          <Card className='md:w-[450px] w-auto '>
+        <div className='grid mt-6 grid-cols-1 md:grid-rows-1 grid-rows-2 md:grid-cols-2 gap-5'>
+          <Card className='w-full'>
             <CardHeader>
-              <CardTitle>Assets Sumary</CardTitle>
+              <CardTitle className='text-xl'>Assets Summary</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className='flex flex-row justify-between'>
-                <CardTitle>Active/Operational Assets: </CardTitle>
-                <CardTitle>
-                  {
-                    assets.filter(asset => {
-                      asset.status === 'Operatinal' || asset.status === 'Active'
-                    }).length
-                  }
-                </CardTitle>
-              </div>
-              <div className='flex flex-row justify-between'>
-                <CardTitle>Maintenance Required Assets:</CardTitle>
-                <CardTitle>
-                  {
-                    assets.filter(asset => {
-                      asset.status === 'Maintenance Required'
-                    }).length
-                  }
-                </CardTitle>
-              </div>
-              <div className='flex flex-row justify-between'>
-                <CardTitle>Expiring Soon Assets:</CardTitle>
-                <CardTitle>
-                  {
-                    assets.filter(asset => {
-                      asset.status === 'Expiring Soon '
-                    }).length
-                  }
-                </CardTitle>
-              </div>
+              <Table className='text-base p-0'>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Asset Status</TableHead>
+                    <TableHead>Assets ID</TableHead>
+                    <TableHead className='text-right'>Assets Count</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {assetStatuses.map((status, index) => {
+                    const filteredAssets = assets.filter(status.filter)
+                    return (
+                      <TableRow key={index}>
+                        <TableCell className='font-medium'>
+                          {status.name}
+                        </TableCell>
+                        <TableCell>
+                          {filteredAssets
+                            .map(asset => asset.assetId)
+                            .join(', ')}
+                        </TableCell>
+                        <TableCell className='text-right'>
+                          {filteredAssets.length} Assets
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+          <Card className=' w-auto grid col-span-1 '>
+            <CardHeader>
+              <CardTitle className='text-xl'>Employees Sumary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table className='text-base p-0'>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Employee ID</TableHead>
+                    <TableHead>Assets ID</TableHead>
+                    <TableHead className='text-right'>Assets Count</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {emps.map((emp, index) => {
+                    const employeeAssets = assets.filter(
+                      asset => asset.assignedTo === emp.employeeId
+                    )
+                    return (
+                      <TableRow key={index} className=''>
+                        <TableCell>Employee {emp.employeeId}</TableCell>
+                        <TableCell className='flex flex-row'>
+                          {employeeAssets
+                            .map(asset => asset.assetId)
+                            .join(', ')}
+                        </TableCell>
+                        <TableCell className='text-right'>
+                          {
+                            assets.filter(
+                              asset => asset.assignedTo === emp.employeeId
+                            ).length
+                          }{' '}
+                          Assets
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })}
+                </TableBody>
+              </Table>
             </CardContent>
           </Card>
         </div>

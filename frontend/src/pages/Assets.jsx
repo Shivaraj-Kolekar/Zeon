@@ -7,7 +7,6 @@ import {
   BreadcrumbSeparator,
   BreadcrumbItem
 } from '@/components/ui/breadcrumb'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Card,
   CardContent,
@@ -16,7 +15,6 @@ import {
   CardTitle,
   CardFooter
 } from '@/components/ui/card'
-import AddEmployee from '@/components/AddEmployee'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 import {
@@ -32,17 +30,16 @@ import { Edit2, SlashIcon, Trash2 } from 'lucide-react'
 import AddAsset from '@/components/AddAsset'
 import { Button } from '@/components/ui/button'
 import UpdateAsset from '@/components/UpdateAsset'
-import { LayoutDashboard } from 'lucide-react'
-import { User2Icon } from 'lucide-react'
-import { ComputerIcon } from 'lucide-react'
-import { Link } from 'react-router-dom'
+
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from '@/components/ui/tooltip'
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog'
 function Assets () {
   const [assets, setAssets] = useState()
 
@@ -98,8 +95,8 @@ function Assets () {
   }
   return (
     <div className=''>
-      <div className='lg:mx-16 my-16 mx-6 min-h-screen  flex  flex-col '>
-        <Breadcrumb className='mb-8 font-semibold'>
+      <div className='lg:mx-16 my-8 mx-6 min-h-screen  flex  flex-col '>
+        <Breadcrumb className='mb-5 font-semibold'>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -131,6 +128,9 @@ function Assets () {
             )}
           </BreadcrumbList>
         </Breadcrumb>
+        <div className='text-start self-start mb-5'>
+          <h2 className=' text-2xl md:text-3xl font-bold  '>Manage Assets</h2>
+        </div>
         <div className=' '>
           <Card className=' col-span-2'>
             {' '}
@@ -177,9 +177,31 @@ function Assets () {
                             }}
                           />
                           <div>
-                            <Button onClick={() => handleDelete(asset.assetId)}>
-                              <Trash2 className=' h-4 w-4'></Trash2>
-                            </Button>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button>
+                                  <Trash2 className=' h-4 w-4'></Trash2>
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className='sm:max-w-[450px] '>
+                                <DialogHeader className='pt-2'>
+                                  <DialogTitle className='font-bold'>
+                                    Delete Asset
+                                  </DialogTitle>
+                                  <DialogDescription>
+                                    This action will delete complete Asset data.
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <DialogFooter>
+                                  <Button
+                                    variant='destructive'
+                                    onClick={() => handleDelete(asset.assetId)}
+                                  >
+                                    Delete
+                                  </Button>
+                                </DialogFooter>
+                              </DialogContent>
+                            </Dialog>
                           </div>
                         </span>
                       </TableCell>

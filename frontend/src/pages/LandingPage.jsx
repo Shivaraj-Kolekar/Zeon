@@ -18,8 +18,6 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion'
 import { Link } from 'react-router-dom'
-import { FeaturesGrid } from '@/components/FeaturesGrid'
-import { DatePicker } from '@/components/DatePicker'
 function LandingPage () {
   return (
     <>

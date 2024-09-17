@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Edit2, Trash2 } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Card,
   CardContent,
@@ -18,9 +17,6 @@ import {
   CardTitle,
   CardFooter
 } from '@/components/ui/card'
-import { LayoutDashboard } from 'lucide-react'
-import { User2Icon } from 'lucide-react'
-import { ComputerIcon } from 'lucide-react'
 import AddEmployee from '@/components/AddEmployee'
 import axios from 'axios'
 import {
@@ -32,17 +28,20 @@ import {
   TableRow,
   TableFooter
 } from '@/components/ui/table'
-import { Link } from 'react-router-dom'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from '@/components/ui/tooltip'
+
 import { SlashIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import DeleteEmployee from '@/components/DeleteEmployee'
 import UpdateEmployee from '@/components/UpdateEmployee'
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 function Employees () {
   const [emps, setEmps] = useState()
@@ -129,8 +128,8 @@ function Employees () {
   }
   return (
     <div className=''>
-      <div className='lg:mx-16 my-16 mx-6  min-h-screen min-w-screen flex  flex-col '>
-        <Breadcrumb className='mb-8 font-semibold'>
+      <div className='lg:mx-16 my-8 mx-6  min-h-screen min-w-screen flex  flex-col '>
+        <Breadcrumb className='mb-5 font-semibold'>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -162,6 +161,11 @@ function Employees () {
             )}
           </BreadcrumbList>
         </Breadcrumb>
+        <div className='text-start self-start mb-5'>
+          <h2 className=' text-2xl md:text-3xl font-bold  '>
+            Manage Employees
+          </h2>
+        </div>
         <div className=' '>
           <Card className='  '>
             {' '}
@@ -210,11 +214,32 @@ function Employees () {
                             }}
                           />
                           <div>
-                            <Button
-                              onClick={() => handleDelete(emp.employeeId)}
-                            >
-                              <Trash2 className=' h-4 w-4'></Trash2>
-                            </Button>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button>
+                                  <Trash2 className=' h-4 w-4'></Trash2>
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className='sm:max-w-[450px] '>
+                                <DialogHeader className='pt-2'>
+                                  <DialogTitle className='font-bold'>
+                                    Delete Employee
+                                  </DialogTitle>
+                                  <DialogDescription>
+                                    This action will delete complete Employee
+                                    data.
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <DialogFooter>
+                                  <Button
+                                    onClick={() => handleDelete(emp.employeeId)}
+                                    variant='destructive'
+                                  >
+                                    Delete
+                                  </Button>
+                                </DialogFooter>
+                              </DialogContent>
+                            </Dialog>
                           </div>
                         </span>
                       </TableCell>
