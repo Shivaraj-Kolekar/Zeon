@@ -318,34 +318,40 @@ function Dashboard () {
           </Tabs>
         </div>
         <div>
-          <Card>
+          <Card className='md:w-[450px] w-auto '>
             <CardHeader>
               <CardTitle>Assets Sumary</CardTitle>
             </CardHeader>
             <CardContent>
               <div className='flex flex-row justify-between'>
-                <p>Active/Operational Assets: </p>
-                <p>
-                  {assets.filer(asset => {
+                <CardTitle className='text-2xl'>
+                  Active/Operational Assets:{' '}
+                </CardTitle>
+                <CardTitle className='text-2xl'>
+                  {assets.filter(asset => {
                     asset.status === 'Operatinal' || asset.status === 'Active'
                   })}
-                </p>
+                </CardTitle>
               </div>
               <div className='flex flex-row justify-between'>
-                <p>Maintenance Required Assets:</p>
-                <p>
-                  {assets.filer(asset => {
+                <CardTitle className='text-2xl'>
+                  Maintenance Required Assets:
+                </CardTitle>
+                <CardTitle className='text-2xl'>
+                  {assets.filter(asset => {
                     asset.status === 'Maintenance Required'
                   })}
-                </p>
+                </CardTitle>
               </div>
               <div className='flex flex-row justify-between'>
-                <p>Expiring Soon Assets:</p>
-                <p>
-                  {assets.filer(asset => {
+                <CardTitle className='text-2xl'>
+                  Expiring Soon Assets:
+                </CardTitle>
+                <CardTitle className='text-2xl'>
+                  {assets.filter(asset => {
                     asset.status === 'Expiring Soon '
                   })}
-                </p>
+                </CardTitle>
               </div>
             </CardContent>
           </Card>
