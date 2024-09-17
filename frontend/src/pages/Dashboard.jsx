@@ -78,6 +78,9 @@ import {
   CardTitle,
   CardFooter
 } from '@/components/ui/card'
+import { LayoutDashboard } from 'lucide-react'
+import { User2Icon } from 'lucide-react'
+import { ComputerIcon } from 'lucide-react'
 import AddEmployee from '@/components/AddEmployee'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 function Dashboard () {
@@ -130,19 +133,26 @@ function Dashboard () {
   }
 
   return (
-    <div>
-      <div className='lg:mx-16 my-16 mx-6 min-h-screen  flex  flex-col '>
-        <Sidebar>
+    <div className='grid grid-cols-12'>
+      <div
+        className='grid col-span-1  '
+        style={{ display: 'flex', height: '100%', minHeight: '400px' }}
+      >
+        <Sidebar backgroundColor='black' width='70px'>
           <Menu>
-            <SubMenu label='Charts'>
-              <MenuItem> Pie charts </MenuItem>
-              <MenuItem> Line charts </MenuItem>
-            </SubMenu>
-            <MenuItem> Documentation </MenuItem>
-            <MenuItem> Calendar </MenuItem>
+            <MenuItem>
+              <LayoutDashboard className='w-9 -h-9'></LayoutDashboard>
+            </MenuItem>
+            <MenuItem>
+              <User2Icon className='w-8 -h-8'></User2Icon>
+            </MenuItem>
+            <MenuItem>
+              <ComputerIcon className='w-8 -h-8' />
+            </MenuItem>
           </Menu>
         </Sidebar>
-        ;
+      </div>
+      <div className='lg:mx-16 my-16 mx-6 min-h-screen col-span-11  flex  flex-col '>
         <Breadcrumb className='mb-8 font-semibold'>
           <BreadcrumbList>
             <BreadcrumbItem>
