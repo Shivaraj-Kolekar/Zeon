@@ -324,33 +324,33 @@ function Dashboard () {
             </CardHeader>
             <CardContent>
               <div className='flex flex-row justify-between'>
-                <CardTitle className='text-2xl'>
-                  Active/Operational Assets:{' '}
-                </CardTitle>
-                <CardTitle className='text-2xl'>
-                  {assets.filter(asset => {
-                    asset.status === 'Operatinal' || asset.status === 'Active'
-                  })}
-                </CardTitle>
-              </div>
-              <div className='flex flex-row justify-between'>
-                <CardTitle className='text-2xl'>
-                  Maintenance Required Assets:
-                </CardTitle>
-                <CardTitle className='text-2xl'>
-                  {assets.filter(asset => {
-                    asset.status === 'Maintenance Required'
-                  })}
+                <CardTitle>Active/Operational Assets: </CardTitle>
+                <CardTitle>
+                  {
+                    assets.filter(asset => {
+                      asset.status === 'Operatinal' || asset.status === 'Active'
+                    }).length
+                  }
                 </CardTitle>
               </div>
               <div className='flex flex-row justify-between'>
-                <CardTitle className='text-2xl'>
-                  Expiring Soon Assets:
+                <CardTitle>Maintenance Required Assets:</CardTitle>
+                <CardTitle>
+                  {
+                    assets.filter(asset => {
+                      asset.status === 'Maintenance Required'
+                    }).length
+                  }
                 </CardTitle>
-                <CardTitle className='text-2xl'>
-                  {assets.filter(asset => {
-                    asset.status === 'Expiring Soon '
-                  })}
+              </div>
+              <div className='flex flex-row justify-between'>
+                <CardTitle>Expiring Soon Assets:</CardTitle>
+                <CardTitle>
+                  {
+                    assets.filter(asset => {
+                      asset.status === 'Expiring Soon '
+                    }).length
+                  }
                 </CardTitle>
               </div>
             </CardContent>
