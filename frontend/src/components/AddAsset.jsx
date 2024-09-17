@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import axios from 'axios'
+import { toast, Toaster } from 'react-hot-toast'
 import {
   Dialog,
   DialogContent,
@@ -8,50 +11,43 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { Label } from './ui/label'
-import { Input } from './ui/input'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import { Plus } from 'lucide-react'
-import { Button } from './ui/button'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import axios from 'axios'
-import { useForm } from 'react-hook-form'
-import { toast, Toaster } from 'react-hot-toast'
+
 function AddAsset () {
   const [isOpen, setIsOpen] = useState(false)
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors, isSubmitting }
   } = useForm()
-  const onSubmit = async data => {
-    console.log(data)
-    console.log(watch('employeeId', 'name'))
-    setIsOpen(false)
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/addasset`, {
-        assetId: watch('assetId'),
-        assetname: watch('assetname'),
-        type: watch('type'),
-        status: watch('status'),
-        category: watch('category'),
-        assignedTo: watch('assignedTo'),
-        createdAt: watch('createdAt'),
-        updatedAt: watch('updatedAt')
-      })
-      .then(res => {
-        toast.success('Asset added successfully!')
 
-        console.log(res.data)
-      })
-      .catch(err => {
-        toast.error('An error occured!')
-        console.log(err)
-      })
+  const onSubmit = async data => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/addasset`,
+        data
+      )
+      toast.success('Asset added successfully!')
+      console.log(response.data)
+      setIsOpen(false)
+    } catch (err) {
+      toast.error('An error occurred!')
+      console.error(err)
+    }
   }
+
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <div>
       <Toaster />
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -69,6 +65,7 @@ function AddAsset () {
           </DialogHeader>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='grid gap-4 py-4'>
+              {/* Asset ID */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='assetId' className='text-right'>
                   Asset Id
@@ -76,7 +73,7 @@ function AddAsset () {
                 <Input
                   id='assetId'
                   placeholder='AS00'
-                  {...register('assetId', { required: true })}
+                  {...register('assetId', { required: 'Asset ID is required' })}
                   className='col-span-3'
                 />
               </div>
@@ -85,6 +82,8 @@ function AddAsset () {
                   {errors.assetId.message}
                 </p>
               )}
+
+              {/* Asset Name */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='assetname' className='text-right'>
                   Asset Name
@@ -92,7 +91,9 @@ function AddAsset () {
                 <Input
                   id='assetname'
                   placeholder='Laptop'
-                  {...register('assetname', { required: true })}
+                  {...register('assetname', {
+                    required: 'Asset name is required'
+                  })}
                   className='col-span-3'
                 />
               </div>
@@ -101,15 +102,47 @@ function AddAsset () {
                   {errors.assetname.message}
                 </p>
               )}
+
+              {/* Asset Type */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='type' className='text-right'>
                   Asset Type
                 </Label>
-                <Input
-                  id='type'
-                  placeholder='device'
-                  {...register('type', { required: true })}
-                  className='col-span-3'
+                <Controller
+                  name='type'
+                  control={control}
+                  rules={{ required: 'Asset type is required' }}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className='col-span-3'>
+                        <SelectValue placeholder='Type' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='Computing Devices'>
+                          Computing Devices
+                        </SelectItem>
+                        <SelectItem value='Networking Equipment'>
+                          Networking Equipment
+                        </SelectItem>
+                        <SelectItem value='Peripherals'>Peripherals</SelectItem>
+                        <SelectItem value='Mobile Device'>
+                          Mobile Device
+                        </SelectItem>
+                        <SelectItem value='Applications'>
+                          Applications
+                        </SelectItem>
+                        <SelectItem value='Operating Systems'>
+                          Operating Systems
+                        </SelectItem>
+                        <SelectItem value='License and Subscription'>
+                          License and Subscription
+                        </SelectItem>
+                        <SelectItem value='Security Software'>
+                          Security Software
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
               </div>
               {errors.type && (
@@ -117,15 +150,33 @@ function AddAsset () {
                   {errors.type.message}
                 </p>
               )}
+
+              {/* Asset Status */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='status' className='text-right'>
                   Asset Status
                 </Label>
-                <Input
-                  id='status'
-                  placeholder='available'
-                  {...register('status', { required: true, maxLength: 80 })}
-                  className='col-span-3'
+                <Controller
+                  name='status'
+                  control={control}
+                  rules={{ required: 'Asset status is required' }}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className='col-span-3'>
+                        <SelectValue placeholder='Status' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='Active'>Active</SelectItem>
+                        <SelectItem value='Operational'>Operational</SelectItem>
+                        <SelectItem value='Expiring Soon'>
+                          Expiring Soon
+                        </SelectItem>
+                        <SelectItem value='Maintenance required'>
+                          Maintenance required
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
               </div>
               {errors.status && (
@@ -133,15 +184,27 @@ function AddAsset () {
                   {errors.status.message}
                 </p>
               )}
+
+              {/* Asset Category */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='category' className='text-right'>
                   Asset Category
                 </Label>
-                <Input
-                  id='category'
-                  placeholder='Hardware'
-                  {...register('category', { required: true })}
-                  className='col-span-3'
+                <Controller
+                  name='category'
+                  control={control}
+                  rules={{ required: 'Asset category is required' }}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className='col-span-3'>
+                        <SelectValue placeholder='Category' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='Hardware'>Hardware</SelectItem>
+                        <SelectItem value='Software'>Software</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
               </div>
               {errors.category && (
@@ -149,6 +212,8 @@ function AddAsset () {
                   {errors.category.message}
                 </p>
               )}
+
+              {/* Assigned To */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='assignedTo' className='text-right'>
                   Asset Assigned To
@@ -156,7 +221,9 @@ function AddAsset () {
                 <Input
                   id='assignedTo'
                   placeholder='Emp00'
-                  {...register('assignedTo', { required: true })}
+                  {...register('assignedTo', {
+                    required: 'Assigned to is required'
+                  })}
                   className='col-span-3'
                 />
               </div>
@@ -165,6 +232,8 @@ function AddAsset () {
                   {errors.assignedTo.message}
                 </p>
               )}
+
+              {/* Created At */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='createdAt' className='text-right'>
                   Asset Created at
@@ -172,7 +241,9 @@ function AddAsset () {
                 <Input
                   id='createdAt'
                   type='date'
-                  {...register('createdAt', { required: true })}
+                  {...register('createdAt', {
+                    required: 'Created date is required'
+                  })}
                   className='col-span-3'
                 />
               </div>
@@ -181,6 +252,8 @@ function AddAsset () {
                   {errors.createdAt.message}
                 </p>
               )}
+
+              {/* Updated At */}
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='updatedAt' className='text-right'>
                   Asset Updated at
@@ -188,7 +261,9 @@ function AddAsset () {
                 <Input
                   id='updatedAt'
                   type='date'
-                  {...register('updatedAt', { required: true })}
+                  {...register('updatedAt', {
+                    required: 'Updated date is required'
+                  })}
                   className='col-span-3'
                 />
               </div>
@@ -241,5 +316,4 @@ function AddAsset () {
     </div>
   )
 }
-
 export default AddAsset

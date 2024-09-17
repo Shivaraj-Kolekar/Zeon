@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for URL-encoded payloads
 app.use(
   cors({
-    origin: 'https://zeon-vault.vercel.app'
+    origin: process.env.FRONTEND_URL
   })
 ) // Enable CORS for all origins
 app.options('*', cors())
@@ -204,6 +204,7 @@ app.post('/addasset', async (req, res) => {
     console.log(err)
   }
 })
+
 //Get ALL employees info route
 app.get('/emp', async (req, res) => {
   try {

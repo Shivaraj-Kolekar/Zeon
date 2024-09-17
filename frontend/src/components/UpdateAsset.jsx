@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
+import { useForm, Controller } from 'react-hook-form'
+import { toast, Toaster } from 'react-hot-toast'
 import { Button } from '@/components/ui/button'
 import { Edit2 } from 'lucide-react'
 import {
@@ -11,12 +11,19 @@ import {
   DialogTitle,
   DialogFooter
 } from '@/components/ui/dialog'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const UpdateAsset = ({ asset, onUpdate }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       assetId: asset.assetId,
       assetname: asset.assetname,
@@ -84,28 +91,91 @@ const UpdateAsset = ({ asset, onUpdate }) => {
               </div>
               <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor='type' className='text-right'>
-                  Type
+                  Asset Type
                 </Label>
-                <Input id='type' {...register('type')} className='col-span-3' />
-              </div>
-              <div className='grid grid-cols-4 items-center gap-4'>
-                <Label htmlFor='status' className='text-right'>
-                  Status
-                </Label>
-                <Input
-                  id='role'
-                  {...register('status')}
-                  className='col-span-3'
+                <Controller
+                  name='type'
+                  control={control}
+                  rules={{ required: 'Asset type is required' }}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className='col-span-3'>
+                        <SelectValue placeholder='Type' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='Computing Devices'>
+                          Computing Devices
+                        </SelectItem>
+                        <SelectItem value='Networking Equipment'>
+                          Networking Equipment
+                        </SelectItem>
+                        <SelectItem value='Peripherals'>Peripherals</SelectItem>
+                        <SelectItem value='Mobile Device'>
+                          Mobile Device
+                        </SelectItem>
+                        <SelectItem value='Applications'>
+                          Applications
+                        </SelectItem>
+                        <SelectItem value='Operating Systems'>
+                          Operating Systems
+                        </SelectItem>
+                        <SelectItem value='License and Subscription'>
+                          License and Subscription
+                        </SelectItem>
+                        <SelectItem value='Security Software'>
+                          Security Software
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
               </div>
               <div className='grid grid-cols-4 items-center gap-4'>
-                <Label htmlFor='department' className='text-right'>
-                  Category
+                <Label htmlFor='status' className='text-right'>
+                  Asset Status
                 </Label>
-                <Input
-                  id='category'
-                  {...register('category')}
-                  className='col-span-3'
+                <Controller
+                  name='status'
+                  control={control}
+                  rules={{ required: 'Asset status is required' }}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className='col-span-3'>
+                        <SelectValue placeholder='Status' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='Active'>Active</SelectItem>
+                        <SelectItem value='Operational'>Operational</SelectItem>
+                        <SelectItem value='Expiring Soon'>
+                          Expiring Soon
+                        </SelectItem>
+                        <SelectItem value='Maintenance required'>
+                          Maintenance required
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </div>
+              <div className='grid grid-cols-4 items-center gap-4'>
+                <Label htmlFor='category' className='text-right'>
+                  Asset Category
+                </Label>
+                <Controller
+                  name='category'
+                  control={control}
+                  rules={{ required: 'Asset category is required' }}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className='col-span-3'>
+                        <SelectValue placeholder='Category' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='Hardware'>Hardware</SelectItem>
+                        <SelectItem value='Software'>Software</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
               </div>
               <div className='grid grid-cols-4 items-center gap-4'>

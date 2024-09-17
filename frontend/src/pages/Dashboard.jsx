@@ -201,92 +201,103 @@ function Dashboard () {
           </Card>
         </div>
         <div className=' '>
-          <Tabs defaultValue='Employees' className=''>
-            <TabsList className=' grid  grid-cols-2'>
-              <TabsTrigger className='' value='Employees'>
-                Employees
-              </TabsTrigger>
-              <TabsTrigger className='' value='assets'>
-                Assets
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value='Employees'>
-              <Card className='  '>
-                {' '}
-                <CardHeader className='flex justify-between flex-row items-center'>
-                  <CardTitle className='text-xl'>
-                    Employees Data Table
-                  </CardTitle>
-                </CardHeader>{' '}
-                <hr></hr>
-                <CardContent>
-                  <Table className='p-0 text-base'>
-                    <TableHeader className=''>
-                      <TableRow>
-                        <TableHead className='w-[100px]'>Employee ID</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead>Role</TableHead>
-                        <TableHead>Department</TableHead>
-                        <TableHead>Join Date</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {emps.map(emp => (
-                        <TableRow key={emp.employeeId}>
-                          <TableCell>{emp.employeeId}</TableCell>
-                          <TableCell>{emp.name}</TableCell>
-                          <TableCell>{emp.email}</TableCell>
-                          <TableCell>{emp.role}</TableCell>
-                          <TableCell>{emp.department}</TableCell>
-                          <TableCell>
-                            {new Date(emp.joindate).toLocaleDateString()}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                    <TableFooter></TableFooter>
-                  </Table>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value='assets'>
-              <Card className=' col-span-2'>
-                {' '}
-                <CardHeader>
-                  <CardTitle className='text-xl'>Assets Data Table</CardTitle>
-                </CardHeader>{' '}
-                <hr></hr>
-                <CardContent>
-                  <Table className='p-0 text-base'>
-                    <TableHeader className=''>
-                      <TableRow>
-                        <TableHead className='w-[100px]'>Asset ID</TableHead>
-                        <TableHead>Asset Name</TableHead>
-                        <TableHead>Asset Type</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Category</TableHead>
-                        <TableHead>Assigned To Employee</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {assets.map(asset => (
-                        <TableRow key={asset.assetId}>
-                          <TableCell>{asset.assetId}</TableCell>
-                          <TableCell>{asset.assetname}</TableCell>
-                          <TableCell>{asset.type}</TableCell>
-                          <TableCell>{asset.status}</TableCell>
-                          <TableCell>{asset.category}</TableCell>
-                          <TableCell>{asset.assignedTo}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                    <TableFooter></TableFooter>
-                  </Table>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <h2 className='text-xl font-bold'>
+                  Employee and Assets Data Table
+                </h2>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue='Employees' className=''>
+                <TabsList className=' grid  grid-cols-2'>
+                  <TabsTrigger className='' value='Employees'>
+                    Employees
+                  </TabsTrigger>
+                  <TabsTrigger className='' value='assets'>
+                    Assets
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value='Employees'>
+                  <Card className='  '>
+                    {' '}
+                    <CardHeader className='flex justify-between flex-row items-center'>
+                      <CardTitle className='text-xl'>Employees</CardTitle>
+                    </CardHeader>{' '}
+                    <hr></hr>
+                    <CardContent>
+                      <Table className='p-0  text-base'>
+                        <TableHeader className=''>
+                          <TableRow>
+                            <TableHead className=''>Employee ID</TableHead>
+                            <TableHead>Name</TableHead>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Role</TableHead>
+                            <TableHead>Department</TableHead>
+                            <TableHead>Join Date</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {emps.map(emp => (
+                            <TableRow key={emp.employeeId}>
+                              <TableCell>{emp.employeeId}</TableCell>
+                              <TableCell>{emp.name}</TableCell>
+                              <TableCell>{emp.email}</TableCell>
+                              <TableCell>{emp.role}</TableCell>
+                              <TableCell>{emp.department}</TableCell>
+                              <TableCell>
+                                {new Date(emp.joindate).toLocaleDateString()}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                        <TableFooter></TableFooter>
+                      </Table>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                <TabsContent value='assets'>
+                  <Card className=' col-span-2'>
+                    {' '}
+                    <CardHeader>
+                      <CardTitle className='text-xl'>Assets</CardTitle>
+                    </CardHeader>{' '}
+                    <hr></hr>
+                    <CardContent>
+                      <Table className='p-0 text-base'>
+                        <TableHeader className=''>
+                          <TableRow>
+                            <TableHead className='w-[100px]'>
+                              Asset ID
+                            </TableHead>
+                            <TableHead>Asset Name</TableHead>
+                            <TableHead>Asset Type</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead>Category</TableHead>
+                            <TableHead>Assigned To Employee</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {assets.map(asset => (
+                            <TableRow key={asset.assetId}>
+                              <TableCell>{asset.assetId}</TableCell>
+                              <TableCell>{asset.assetname}</TableCell>
+                              <TableCell>{asset.type}</TableCell>
+                              <TableCell>{asset.status}</TableCell>
+                              <TableCell>{asset.category}</TableCell>
+                              <TableCell>{asset.assignedTo}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                        <TableFooter></TableFooter>
+                      </Table>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
         </div>
         <div className='grid mt-6 grid-cols-1 md:grid-rows-1 grid-rows-2 md:grid-cols-2 gap-5'>
           <Card className='w-full'>
