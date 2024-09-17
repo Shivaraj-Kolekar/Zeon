@@ -50,7 +50,7 @@ function Assets () {
     return (
       <div
         role='status'
-        className='min-w-screen min-h-screen flex justify-center items-center'
+        className=' min-h-screen flex justify-center items-center'
       >
         <svg
           aria-hidden='true'
@@ -87,7 +87,7 @@ function Assets () {
       })
   }
   return (
-    <div className='lg:mx-16 my-16 mx-6 min-h-screen min-w-screen flex  flex-col '>
+    <div className='lg:mx-16 my-16 mx-6 min-h-screen  flex  flex-col '>
       <Breadcrumb className='mb-8 font-semibold'>
         <BreadcrumbList>
           <BreadcrumbItem>

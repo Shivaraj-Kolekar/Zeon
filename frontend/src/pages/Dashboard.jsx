@@ -79,7 +79,7 @@ import {
   CardFooter
 } from '@/components/ui/card'
 import AddEmployee from '@/components/AddEmployee'
-
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 function Dashboard () {
   const [emps, setEmps] = useState()
   const [assets, setAssets] = useState()
@@ -131,7 +131,18 @@ function Dashboard () {
 
   return (
     <div>
-      <div className='lg:mx-16 my-16 mx-6 min-h-screen min-w-screen flex  flex-col '>
+      <div className='lg:mx-16 my-16 mx-6 min-h-screen  flex  flex-col '>
+        <Sidebar>
+          <Menu>
+            <SubMenu label='Charts'>
+              <MenuItem> Pie charts </MenuItem>
+              <MenuItem> Line charts </MenuItem>
+            </SubMenu>
+            <MenuItem> Documentation </MenuItem>
+            <MenuItem> Calendar </MenuItem>
+          </Menu>
+        </Sidebar>
+        ;
         <Breadcrumb className='mb-8 font-semibold'>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -164,7 +175,7 @@ function Dashboard () {
             )}
           </BreadcrumbList>
         </Breadcrumb>
-        <div className='grid grid-cols-4  gap-2 w-screen mb-6'>
+        <div className='grid grid-cols-4  gap-2  mb-6'>
           <Card className='col-span-4 lg:col-span-1'>
             <CardHeader className='flex flex-row justify-between items-center'>
               <CardTitle>Total Employees </CardTitle>
