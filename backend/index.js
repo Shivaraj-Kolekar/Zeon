@@ -1,12 +1,10 @@
 import express from 'express'
 import db from './src/db.js'
-
 import cors from 'cors'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { eq } from 'drizzle-orm'
 import dotenv from 'dotenv'
-import { login } from './routes/login.js'
 import { UserTable } from './src/drizzle/schema.js'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
@@ -130,24 +128,6 @@ app.post('/login', async (req, res) => {
   }
 })
 
-/*Protected route example
-app.get('/me', verifyToken, async (req, res) => {
-  try {
-    const user = await db
-      .select()
-      .from(UserTable)
-      .where(eq(UserTable.id, req.userId))
-      .limit(1)
-    if (user.length === 0) return res.status(404).send('No user found.')
-
-    // Remove password from the response
-    const { password, ...userWithoutPassword } = user[0]
-    res.status(200).send(userWithoutPassword)
-  } catch (error) {
-    res.status(500).send('There was a problem finding the user.')
-  }
-})*/
-
 //ADD employee route
 app.post('/addemp', async (req, res) => {
   try {
@@ -223,7 +203,6 @@ app.get('/emp', async (req, res) => {
 })
 
 //Get ALL assets info route
-
 app.get('/assets', async (req, res) => {
   try {
     const assetResult = await db.select().from(assetsTable)
@@ -319,6 +298,7 @@ app.delete('/employee/:id', async (req, res) => {
   }
 })
 
+//delete asset route
 app.delete('/asset/:id', async (req, res) => {
   try {
     await db
